@@ -1,4 +1,4 @@
-#A php class to determine adjacent zipcodes from a zipcode database.
+# A php class to determine adjacent zipcodes from a zipcode database.
 
 zipsInit() input and output stubs - echos json encoded output
 
