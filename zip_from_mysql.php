@@ -17,11 +17,14 @@ class ZipCodeLookup {
 		$lon = $res['longitude'];		
 		$R = 6371;  // earth's mean radius in km
 		// miles 3959
-		$maxLat = $lat + rad2deg($rad/$R);
-		$minLat = $lat - rad2deg($rad/$R);
-		// compensate for degrees longitude getting smaller with increasing latitude
-		$maxLon = $lon + rad2deg($rad/$R/cos(deg2rad($lat)));
-		$minLon = $lon - rad2deg($rad/$R/cos(deg2rad($lat)));
+		
+		// first cut bounding box step omitted
+		$latMax = $lat + rad2deg($rad/$R);
+		$latMin = $lat - rad2deg($rad/$R);
+		// degrees longitude smaller with latitude increase
+		$lonMax = $lon + rad2deg($rad/$R/cos(deg2rad($lat)));
+		$lonMin = $lon - rad2deg($rad/$R/cos(deg2rad($lat)));
+		// 
 		
 		$zsql = "SELECT zip, city, state, (
 		      6371 * acos (
